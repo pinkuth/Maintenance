@@ -1,0 +1,5 @@
+# Enable/Disable maintenance mode.
+enabled: false
+
+# Enter the message you want to be shown when a player tries to join when maintenance mode is enabled.
+maintenanceMsg: ""
