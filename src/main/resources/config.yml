@@ -1,5 +1,7 @@
 # Enable/Disable maintenance mode.
-enabled: false
+global: false
 
 # Enter the message you want to be shown when a player tries to join when maintenance mode is enabled.
-maintenanceMsg: ""
+kickMessage: "Maintenance mode enabled"
+
+servers: []

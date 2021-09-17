@@ -1,2 +1,3 @@
-net\xenoservers\maintenance\commands\maintenanceCommand.class
+net\xenoservers\maintenance\commands\MaintenanceCommand.class
+net\xenoservers\maintenance\tasks\StatusCheckTask.class
 net\xenoservers\maintenance\Maintenance.class
