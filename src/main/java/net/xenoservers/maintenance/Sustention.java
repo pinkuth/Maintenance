@@ -8,7 +8,7 @@ import net.xenoservers.maintenance.commands.MaintenanceCommand;
 import net.xenoservers.maintenance.tasks.StatusCheckTask;
 import java.util.*;
 
-public final class Maintenance extends Plugin {
+public final class Sustention extends Plugin {
 
     @Override
     public void onEnable() {
@@ -21,7 +21,7 @@ public final class Maintenance extends Plugin {
 
     public void onLogin(PlayerLoginEvent e) {
         ProxiedPlayer player = e.getPlayer();
-        if(player.hasPermission("mtn.join")) return;
+        if(player.hasPermission("mtn.change")) return;
         if (getConfig().getBoolean("global")) {
             player.disconnect(getConfig().getString("kickMessage"));;
             e.setCancelled();
@@ -30,7 +30,7 @@ public final class Maintenance extends Plugin {
 
     public void onPreTransfer(PreTransferEvent e) {
         ProxiedPlayer player = e.getPlayer();
-        if(player.hasPermission("mtn.join")) return;
+        if(player.hasPermission("mtn.change")) return;
         String aimedTransfer = e.getTargetServer().getServerName();
         List<Object> serverList = getConfig().getList("servers");
         if(serverList.contains(aimedTransfer)) {

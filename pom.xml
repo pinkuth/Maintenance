@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.xenoservers</groupId>
-    <artifactId>Maintenance</artifactId>
+    <artifactId>Sustention</artifactId>
     <version>1.0.0</version>
 
-    <name>Maintenance</name>
+    <name>Sustention</name>
 
     <build>
         <plugins>

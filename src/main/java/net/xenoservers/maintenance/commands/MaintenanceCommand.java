@@ -4,16 +4,15 @@ import dev.waterdog.waterdogpe.command.Command;
 import dev.waterdog.waterdogpe.command.CommandSender;
 import dev.waterdog.waterdogpe.command.CommandSettings;
 
-import dev.waterdog.waterdogpe.network.serverinfo.ServerInfo;
-import net.xenoservers.maintenance.Maintenance;
+import net.xenoservers.maintenance.Sustention;
 
 import java.util.*;
 
 public class MaintenanceCommand extends Command {
 
-    public Maintenance main;
+    public Sustention main;
 
-    public MaintenanceCommand(Maintenance main) {
+    public MaintenanceCommand(Sustention main) {
         super("maintenance", CommandSettings.builder()
                 .setUsageMessage("/mtn <on/off> [server]")
                 .setDescription("Enable/Disable maintenance mode")
