@@ -1,18 +1,18 @@
-package net.xenoservers.maintenance.commands;
+package com.skulkstudio.maintenance.commands;
 
 import dev.waterdog.waterdogpe.command.Command;
 import dev.waterdog.waterdogpe.command.CommandSender;
 import dev.waterdog.waterdogpe.command.CommandSettings;
 
-import net.xenoservers.maintenance.Sustention;
+import com.skulkstudio.maintenance.Maintenance;
 
 import java.util.*;
 
 public class MaintenanceCommand extends Command {
 
-    public Sustention main;
+    public Maintenance main;
 
-    public MaintenanceCommand(Sustention main) {
+    public MaintenanceCommand(Maintenance main) {
         super("maintenance", CommandSettings.builder()
                 .setUsageMessage("/mtn <on/off> [server]")
                 .setDescription("Enable/Disable maintenance mode")

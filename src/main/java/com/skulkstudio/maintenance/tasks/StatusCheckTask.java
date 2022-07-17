@@ -1,15 +1,15 @@
-package net.xenoservers.maintenance.tasks;
+package com.skulkstudio.maintenance.tasks;
 
 import dev.waterdog.waterdogpe.player.ProxiedPlayer;
 import dev.waterdog.waterdogpe.scheduler.Task;
-import net.xenoservers.maintenance.Sustention;
+import com.skulkstudio.maintenance.Maintenance;
 
 import java.util.*;
 
 public class StatusCheckTask extends Task {
-    public Sustention main;
+    public Maintenance main;
 
-    public StatusCheckTask(Sustention main) {
+    public StatusCheckTask(Maintenance main) {
         this.main = main;
     }
 

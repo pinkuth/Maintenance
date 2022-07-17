@@ -1,14 +1,15 @@
-package net.xenoservers.maintenance;
+package com.skulkstudio.maintenance;
 
+import com.skulkstudio.maintenance.commands.MaintenanceCommand;
+import com.skulkstudio.maintenance.tasks.StatusCheckTask;
 import dev.waterdog.waterdogpe.player.ProxiedPlayer;
 import dev.waterdog.waterdogpe.plugin.Plugin;
 import dev.waterdog.waterdogpe.event.defaults.PlayerLoginEvent;
 import dev.waterdog.waterdogpe.event.defaults.PreTransferEvent;
-import net.xenoservers.maintenance.commands.MaintenanceCommand;
-import net.xenoservers.maintenance.tasks.StatusCheckTask;
+
 import java.util.*;
 
-public final class Sustention extends Plugin {
+public final class Maintenance extends Plugin {
 
     @Override
     public void onEnable() {
