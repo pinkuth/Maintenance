@@ -1,5 +1,5 @@
 #Maintenance
-This is a [WaterdogPE](https://github.com/WaterdogPE/WaterdogPE) plugin for enabling/disabling players to join specific servers or the proxy its self.
+This is a [WaterdogPE](https://github.com/WaterdogPE/WaterdogPE) plugin for enabling/disabling maintenance mode for players.
 
 ###Usage
 ```
