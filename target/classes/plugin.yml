@@ -1,3 +1,0 @@
-name: Maintenance
-version: '${project.version}'
-main: net.xenoservers.maintenance.Maintenance

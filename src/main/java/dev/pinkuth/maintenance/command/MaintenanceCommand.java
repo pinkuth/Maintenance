@@ -1,11 +1,11 @@
-package com.skulkstudio.maintenance.commands;
+package dev.pinkuth.maintenance.command;
 
 import dev.waterdog.waterdogpe.ProxyServer;
 import dev.waterdog.waterdogpe.command.Command;
 import dev.waterdog.waterdogpe.command.CommandSender;
 import dev.waterdog.waterdogpe.command.CommandSettings;
 
-import com.skulkstudio.maintenance.Maintenance;
+import dev.pinkuth.maintenance.Maintenance;
 import dev.waterdog.waterdogpe.network.serverinfo.ServerInfo;
 
 import java.util.*;
@@ -16,7 +16,7 @@ public class MaintenanceCommand extends Command {
         super("maintenance", CommandSettings.builder()
                 .setUsageMessage("/mtn <on|off> [server]")
                 .setDescription("Enable or disable maintenance mode")
-                .setAliases(new String[]{"mtn"})
+                .setAliases("mtn")
                 .setPermission("maintenance.change").build());
     }
 

@@ -1,7 +1,15 @@
+version: 2
+
 # Enable/Disable maintenance mode.
 global: false
 
-# Enter the message you want to be shown when a player tries to join when maintenance mode is enabled.
-kickMessage: "Maintenance mode enabled"
-
+# The servers that are currently in maintenance mode
 servers: []
+
+messages:
+  # Message sent upon kicking an online player due to maintenance mode
+  kick-message: "§cThe server you were connected is now undergoing maintenance, check back later"
+  # Message sent upon a player trying to connect a downstream server that is in maintenance mode
+  transfer-message: "§cThat server is undergoing maintenance, check back later!"
+  # Message sent upon a player trying to join the server while maintenance is enabled
+  join-message: "§cThe server is undergoing maintenance, check back later!"

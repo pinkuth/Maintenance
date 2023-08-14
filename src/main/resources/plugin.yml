@@ -1,3 +1,4 @@
 name: Maintenance
 version: '${project.version}'
-main: com.skulkstudio.maintenance.Maintenance
+main: dev.pinkuth.maintenance.Maintenance
+author: pinkuth
