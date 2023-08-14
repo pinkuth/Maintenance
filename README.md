@@ -9,12 +9,3 @@ This is a [WaterdogPE](https://github.com/WaterdogPE/WaterdogPE) plugin for enab
 | Permission | Information |
 | ---------- | ----------- |
 | `maintenance.change` | Change the maintenance status |
-
-### Todo
-❌ - Not started<br>
-🔃 - In Progress<br>
-✅ - Finished
-
-| TODO | Status |
-| ---- |----|
-| Temporary Maintenance | ❌  |
