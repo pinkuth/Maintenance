@@ -1,0 +1,4 @@
+dev\pinkuth\maintenance\command\MaintenanceCommand.class
+dev\pinkuth\maintenance\MaintenanceManager.class
+dev\pinkuth\maintenance\EventListener.class
+dev\pinkuth\maintenance\Maintenance.class
