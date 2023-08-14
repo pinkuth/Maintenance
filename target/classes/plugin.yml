@@ -1,4 +1,0 @@
-name: Maintenance
-version: '${project.version}'
-main: dev.pinkuth.maintenance.Maintenance
-author: pinkuth
