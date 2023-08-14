@@ -20,7 +20,7 @@ public final class Maintenance extends Plugin {
         loadConfig();
 
         Integer configVersion = getConfig().getInt("version", 0);
-        if(configVersion == null || configVersion != 2) {
+        if(configVersion != 2) {
             getLogger().warn("Your configuration is out of date, please update it to the latest version");
             return;
         }
