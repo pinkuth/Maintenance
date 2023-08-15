@@ -15,6 +15,8 @@ public class EventListener {
     public static void onLogin(PlayerLoginEvent event) {
         ProxiedPlayer player = event.getPlayer();
         if (player.hasPermission("maintenance.change")) return;
+
+        // Handle global maintenance (disconnects player is enabled)
         MaintenanceManager maintenanceManager = Maintenance.getInstance().getMaintenanceManager();
         if (maintenanceManager.isGlobalMaintenanceEnabled())
             player.disconnect(maintenanceManager.getMaintenanceMessage(MaintenanceManager.TYPE_JOIN));
@@ -30,11 +32,13 @@ public class EventListener {
     public static void onServerTransferRequest(ServerTransferRequestEvent event) {
         ProxiedPlayer player = event.getPlayer();
         if (player.hasPermission("maintenance.change")) return;
+
+        // Handle maintenance mode for a player connecting to a downstream server
         MaintenanceManager maintenanceManager = Maintenance.getInstance().getMaintenanceManager();
         String serverName = event.getTargetServer().getServerName().toLowerCase();
         if (maintenanceManager.isServerMaintenanceEnabled(serverName)) {
-            player.disconnect(maintenanceManager.getMaintenanceMessage(MaintenanceManager.TYPE_TRANSFER));
+            player.sendMessage(maintenanceManager.getMaintenanceMessage(MaintenanceManager.TYPE_TRANSFER));
+            event.setCancelled();
         }
     }
-
 }
