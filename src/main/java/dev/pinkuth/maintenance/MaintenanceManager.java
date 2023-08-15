@@ -1,6 +1,7 @@
 package dev.pinkuth.maintenance;
 
 import dev.waterdog.waterdogpe.ProxyServer;
+import dev.waterdog.waterdogpe.network.serverinfo.ServerInfo;
 import dev.waterdog.waterdogpe.player.ProxiedPlayer;
 import jline.internal.Nullable;
 
@@ -60,10 +61,19 @@ public class MaintenanceManager {
         if (value) {
             servers.add(server);
             Collection<ProxiedPlayer> players = ProxyServer.getInstance().getPlayers().values();
+
+            // Loop through all online players to handle maintenance mode enable
             for (ProxiedPlayer proxiedPlayer : players) {
-                String serverName = proxiedPlayer.getDownstreamConnection().getServerInfo().getServerName();
-                if (serverName.equals(server) && !proxiedPlayer.hasPermission("maintenance.change"))
-                    proxiedPlayer.disconnect(getMaintenanceMessage(TYPE_CURRENT));
+                String reason = getMaintenanceMessage(TYPE_CURRENT);
+                ServerInfo downstreamServer = proxiedPlayer.getDownstreamConnection().getServerInfo();
+                String serverName = downstreamServer.getServerName();
+
+                if (serverName.equals(server) && !proxiedPlayer.hasPermission("maintenance.change")) {
+                    // Try connecting to fallback server
+                    boolean succeeded = proxiedPlayer.sendToFallback(downstreamServer, reason);
+                    // If connecting to fallback server failed then kick player from server due to maintenance mode
+                    if(!succeeded) proxiedPlayer.disconnect(reason);
+                }
             }
         } else servers.remove(server);
     }
