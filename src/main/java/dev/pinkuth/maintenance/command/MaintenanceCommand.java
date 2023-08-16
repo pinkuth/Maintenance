@@ -25,9 +25,9 @@ public class MaintenanceCommand extends Command {
         if (args.length < 1 || (!args[0].equalsIgnoreCase("on") && !args[0].equalsIgnoreCase("off"))) return false;
         Boolean mode = (args[0].equalsIgnoreCase("on"));
         if (args.length > 1) {
-            String server = args[1].toLowerCase();
+            String server = args[1];
             Collection<String> servers = new ArrayList<>();
-            ProxyServer.getInstance().getServers().forEach((ServerInfo n) -> servers.add(n.getServerName().toLowerCase()));
+            ProxyServer.getInstance().getServers().forEach((ServerInfo n) -> servers.add(n.getServerName()));
             if (!servers.contains(server)) {
                 sender.sendMessage("§cThat server wasn't found");
                 return true;

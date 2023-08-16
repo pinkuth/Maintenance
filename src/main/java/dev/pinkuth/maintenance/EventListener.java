@@ -35,10 +35,10 @@ public class EventListener {
 
         // Handle maintenance mode for a player connecting to a downstream server
         MaintenanceManager maintenanceManager = Maintenance.getInstance().getMaintenanceManager();
-        String serverName = event.getTargetServer().getServerName().toLowerCase();
+        String reason = maintenanceManager.getMaintenanceMessage(MaintenanceManager.TYPE_TRANSFER);
+        String serverName = event.getTargetServer().getServerName();
         if (maintenanceManager.isServerMaintenanceEnabled(serverName)) {
-            player.sendMessage(maintenanceManager.getMaintenanceMessage(MaintenanceManager.TYPE_TRANSFER));
-            event.setCancelled();
+            maintenanceManager.handleMaintenance(player.getConnectingServer(), player, reason);
         }
     }
 }

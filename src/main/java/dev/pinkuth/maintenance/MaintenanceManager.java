@@ -34,7 +34,7 @@ public class MaintenanceManager {
      * @return whether the server specified is in maintenance mode
      */
     public Boolean isServerMaintenanceEnabled(@Nullable String server) {
-        return servers.contains(server.toLowerCase());
+        return servers.contains(server);
     }
 
     /**
@@ -63,19 +63,36 @@ public class MaintenanceManager {
             Collection<ProxiedPlayer> players = ProxyServer.getInstance().getPlayers().values();
 
             // Loop through all online players to handle maintenance mode enable
-            for (ProxiedPlayer proxiedPlayer : players) {
+            for (ProxiedPlayer player : players) {
                 String reason = getMaintenanceMessage(TYPE_CURRENT);
-                ServerInfo downstreamServer = proxiedPlayer.getDownstreamConnection().getServerInfo();
-                String serverName = downstreamServer.getServerName();
+                ServerInfo downstreamServer = player.getDownstreamConnection().getServerInfo();
 
-                if (serverName.equals(server) && !proxiedPlayer.hasPermission("maintenance.change")) {
-                    // Try connecting to fallback server
-                    boolean succeeded = proxiedPlayer.sendToFallback(downstreamServer, reason);
-                    // If connecting to fallback server failed then kick player from server due to maintenance mode
-                    if(!succeeded) proxiedPlayer.disconnect(reason);
-                }
+                // Handle maintenance mode
+                if (downstreamServer.getServerName().equals(server) && !player.hasPermission("maintenance.change"))
+                    handleMaintenance(downstreamServer, player, reason);
             }
         } else servers.remove(server);
+    }
+
+    /**
+     * Handles player connection to a server if maintenance mode is enabled
+     *
+     * @param oldServer the server the player tried to connect to
+     * @param player the player making the connection
+     * @param reason reason for disconnecting the player
+     */
+    public void handleMaintenance(ServerInfo oldServer, ProxiedPlayer player, String reason) {
+        // Try connecting to fallback server
+        boolean succeeded = player.sendToFallback(oldServer, reason);
+
+        // If player has connected to fallback server, notify them of the failed join due to maintenance mode
+        if (succeeded) {
+            player.sendMessage(reason);
+            return;
+        }
+
+        // If fallback failed, disconnect player due to maintenance mode
+        player.disconnect(reason);
     }
 
     /**
