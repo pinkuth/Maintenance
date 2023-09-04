@@ -2,6 +2,7 @@ package dev.pinkuth.maintenance;
 
 import dev.waterdog.waterdogpe.event.defaults.PlayerLoginEvent;
 import dev.waterdog.waterdogpe.event.defaults.ServerTransferRequestEvent;
+import dev.waterdog.waterdogpe.network.serverinfo.ServerInfo;
 import dev.waterdog.waterdogpe.player.ProxiedPlayer;
 
 public class EventListener {
@@ -36,9 +37,17 @@ public class EventListener {
         // Handle maintenance mode for a player connecting to a downstream server
         MaintenanceManager maintenanceManager = Maintenance.getInstance().getMaintenanceManager();
         String reason = maintenanceManager.getMaintenanceMessage(MaintenanceManager.TYPE_TRANSFER);
-        String serverName = event.getTargetServer().getServerName();
-        if (maintenanceManager.isServerMaintenanceEnabled(serverName)) {
-            maintenanceManager.handleMaintenance(player.getConnectingServer(), player, reason);
+
+        ServerInfo previous = player.getServerInfo();
+        ServerInfo target = event.getTargetServer();
+
+        if (maintenanceManager.isServerMaintenanceEnabled(target.getServerName())) {
+            if(maintenanceManager.isServerMaintenanceEnabled(previous.getServerName())) {
+                // Disconnect player to avoid looping to fallback servers (Makes 1 attempt to connect to fallback)
+                player.disconnect(reason);
+                return;
+            }
+            player.sendToFallback(previous, reason);
         }
     }
 }

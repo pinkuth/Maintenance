@@ -64,35 +64,15 @@ public class MaintenanceManager {
 
             // Loop through all online players to handle maintenance mode enable
             for (ProxiedPlayer player : players) {
+                ServerInfo previous = player.getDownstreamConnection().getServerInfo();
                 String reason = getMaintenanceMessage(TYPE_CURRENT);
-                ServerInfo downstreamServer = player.getDownstreamConnection().getServerInfo();
 
                 // Handle maintenance mode
-                if (downstreamServer.getServerName().equals(server) && !player.hasPermission("maintenance.change"))
-                    handleMaintenance(downstreamServer, player, reason);
+                if (previous.getServerName().equals(server) && !player.hasPermission("maintenance.change")) {
+                    player.sendToFallback(previous, reason);
+                }
             }
         } else servers.remove(server);
-    }
-
-    /**
-     * Handles player connection to a server if maintenance mode is enabled
-     *
-     * @param oldServer the server the player tried to connect to
-     * @param player the player making the connection
-     * @param reason reason for disconnecting the player
-     */
-    public void handleMaintenance(ServerInfo oldServer, ProxiedPlayer player, String reason) {
-        // Try connecting to fallback server
-        boolean succeeded = player.sendToFallback(oldServer, reason);
-
-        // If player has connected to fallback server, notify them of the failed join due to maintenance mode
-        if (succeeded) {
-            player.sendMessage(reason);
-            return;
-        }
-
-        // If fallback failed, disconnect player due to maintenance mode
-        player.disconnect(reason);
     }
 
     /**
