@@ -6,7 +6,7 @@
 
     <groupId>dev.pinkuth</groupId>
     <artifactId>Maintenance</artifactId>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
 
     <name>Maintenance</name>
 
@@ -22,7 +22,6 @@
             <groupId>dev.waterdog.waterdogpe</groupId>
             <artifactId>waterdog</artifactId>
             <version>2.0.0</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
