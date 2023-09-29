@@ -68,7 +68,7 @@ public class MaintenanceManager {
                 String reason = getMaintenanceMessage(TYPE_CURRENT);
 
                 // Handle maintenance mode
-                if (previous.getServerName().equals(server) && !player.hasPermission("maintenance.change")) {
+                if (previous.getServerName().equals(server) && !player.hasPermission("maintenance.join")) {
                     player.sendToFallback(previous, reason);
                 }
             }
